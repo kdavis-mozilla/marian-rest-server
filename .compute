@@ -1,0 +1,15 @@
+#!/bin/bash
+
+mkdir -p ../keep
+
+wget http://data.statmt.org/germann/marian/46ff06e/marian-rest-server
+
+chmod +x marian-rest-server
+
+wget http://data.statmt.org/germann/marian/models/de-en/elg.pc5top10Mc2.10s.7772de5.tar
+
+tar -xf elg.pc5top10Mc2.10s.7772de5.tar
+
+mv elg.pc5top10Mc2.10s.7772de5/rest .
+
+./marian-rest-server -c elg.pc5top10Mc2.10s.7772de5/decoder.yml --cpu-threads 16 -d 0 --log-level debug
